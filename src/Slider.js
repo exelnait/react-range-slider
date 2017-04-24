@@ -1,7 +1,13 @@
-import React, {PureComponent} from "react";
-import "./Slider.less";
+import React, { PureComponent} from "react";
+import PropTypes from 'prop-types';
 
 class App extends PureComponent {
+
+    static propTypes = {
+        range: PropTypes.array.isRequired,
+        onChange: PropTypes.func
+    };
+
     constructor(props, context) {
         super(props, context);
 
@@ -17,15 +23,20 @@ class App extends PureComponent {
     };
 
     componentWillMount() {
+        if (!this.props.range) {
+            throw new Error("'range' prop required")
+        }
         if (this.props.range.length < 2) {
             throw new Error("You need to add 2 or more numbers in 'range' prop")
         }
-        if (this.props.range.filter(value => typeof value !== 'number') > 0) {
+        if (!PropTypes.arrayOf(PropTypes.numbers)) {
             throw new Error("All values in 'range' prop need to be numbers")
         }
-        if (this.props.range.filter((value, index, array) => Math.max.apply(Math, array.slice(0,index)) > value).length !== 0) {
-            throw new Error("All values in 'range' prop need to be ascending")
-        }
+        this.props.range.reduce((acc, value) => {
+            if (value < acc)
+                throw new Error("All values in 'range' prop need to be ascending")
+            return value
+        });
     };
 
     componentDidMount() {
@@ -46,10 +57,12 @@ class App extends PureComponent {
             grab: handlePos
         })
     };
+
     handleStart = () => {
         document.addEventListener('mousemove', this.handleDrag);
         document.addEventListener('mouseup', this.handleEnd);
     };
+
     handleDrag = (e) => {
         e.stopPropagation();
         e.preventDefault();
@@ -64,10 +77,12 @@ class App extends PureComponent {
         });
         this.props.onChange && this.props.onChange(value, e)
     };
+
     handleEnd = (e) => {
         document.removeEventListener('mousemove', this.handleDrag);
         document.removeEventListener('mouseup', this.handleEnd);
     };
+
     position = (e) => {
         const {grab} = this.state;
 
@@ -76,6 +91,7 @@ class App extends PureComponent {
         const direction = node.getBoundingClientRect().left;
         return coordinate - direction - grab;
     };
+
     coordinates = (pos) => {
         const {grab, limit} = this.state;
         if (pos >= limit) pos = limit;
@@ -85,6 +101,7 @@ class App extends PureComponent {
             handle: pos - 5
         }
     };
+
     getValueFromPosition = (pos) => {
         const {limit} = this.state;
         let min = this.props.range[0];
