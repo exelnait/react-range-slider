@@ -17,17 +17,15 @@ class PriceCountSlider extends PureComponent {
       count: 0
     }
   }
-
   handleOnChange = (value) => {
     this.setState({
       count: value
     })
   }
-
   render() {
     return (
       <Slider
-        range={[50, 100, 400, 800, 1000]}
+        range={[50, 100, 200, 400, 800]}
         onChange={this.handleOnChange}
       />
     )
@@ -36,7 +34,10 @@ class PriceCountSlider extends PureComponent {
 ```
 
 ## API
-Rangeslider is bundled as a single component, that accepts data and callbacks only as `props`.
+Range slider is bundled as a single component, that accepts data and callbacks only as `props`.
+
+## Demo
+You can check a small demo in `demo` folder. 
 
 
 ### Props
