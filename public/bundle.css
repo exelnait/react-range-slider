@@ -1,0 +1,87 @@
+.react-range-slider {
+  font-family: Tahoma, sans-serif;
+  display: flex;
+  align-items: center;
+}
+.react-range-slider__wrapper {
+  flex: 1;
+  position: relative;
+  background-color: #e6e7e9;
+  height: 10px;
+}
+.react-range-slider__fill {
+  display: block;
+  height: 100%;
+  background-color: #02b5c8;
+  position: absolute;
+  top: 0;
+  z-index: 5;
+}
+.react-range-slider__handle {
+  background: #02b5c8;
+  cursor: pointer;
+  display: inline-block;
+  position: absolute;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 -1px 3px rgba(0, 0, 0, 0.4);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  top: -5px;
+  z-index: 10;
+}
+.react-range-slider__handle:hover .react-range-slider__tooltip {
+  opacity: 1;
+}
+.react-range-slider__section {
+  display: block;
+  float: left;
+  box-sizing: border-box;
+  border-left: 2px solid white;
+  border-right: 2px solid white;
+  height: 100%;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+.react-range-slider__section-value {
+  display: inline-block;
+  font-size: 14px;
+  width: 30px;
+  text-align: center;
+  position: absolute;
+  right: -17px;
+  top: -21px;
+  color: #a3a4ad;
+}
+.react-range-slider__section-text {
+  color: #a3a4ad;
+  position: relative;
+  bottom: -12px;
+  font-size: 14px;
+}
+.react-range-slider__section-title {
+  font-size: 15px;
+  line-height: 1;
+  color: #6e707c;
+}
+.react-range-slider__section-title:first-child {
+  margin-right: 15px;
+}
+.react-range-slider__section-title:last-child {
+  margin-left: 15px;
+}
+.react-range-slider__tooltip {
+  text-align: center;
+  position: absolute;
+  font-weight: normal;
+  font-size: 18px;
+  transition: all 100ms ease-in;
+  display: inline-block;
+  width: 50px;
+  left: 50%;
+  margin-left: -25px;
+  color: #02b5c8;
+  opacity: 0;
+  top: -32px;
+  padding-bottom: -32px;
+}
