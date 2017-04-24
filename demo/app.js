@@ -5,9 +5,9 @@ import "./../src/Slider.less";
 
 ReactDOM.render(
     <Slider
-        range={[0, 50, 200, 400, 800]}
+        range={[50, 100, 200, 400, 800]}
         onChange={value => {
-            console.log(value)
+            console.log('value', value)
         }}/>,
     document.getElementById('root')
 );

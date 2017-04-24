@@ -71,7 +71,7 @@ class App extends PureComponent {
         if (new_coordinates) {
             new_state.coordinates = new_coordinates;
         }
-        this.setState(new_coordinates);
+        this.setState(new_state);
     };
 
     handleStart = () => {

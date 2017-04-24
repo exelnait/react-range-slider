@@ -10053,7 +10053,7 @@ var App = function (_PureComponent) {
             if (new_coordinates) {
                 new_state.coordinates = new_coordinates;
             }
-            _this.setState(new_coordinates);
+            _this.setState(new_state);
         };
 
         _this.handleStart = function () {
@@ -10299,9 +10299,9 @@ __webpack_require__(83);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _reactDom2.default.render(_react2.default.createElement(_Slider2.default, {
-    range: [0, 50, 200, 400, 800],
+    range: [50, 100, 200, 400, 800],
     onChange: function onChange(value) {
-        console.log(value);
+        console.log('value', value);
     } }), document.getElementById('root'));
 
 /***/ }),
