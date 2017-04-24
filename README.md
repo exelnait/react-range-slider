@@ -4,6 +4,9 @@
 
 <img src="./demo/slider.png" alt="Slider" />
 
+Check out [project page](https://exelnait.github.io/react-range-slider/) and [demo](https://exelnait.github.io/react-range-slider/demo/index.html)
+
+
 ## Example
 
 ```js
@@ -35,10 +38,6 @@ class PriceCountSlider extends PureComponent {
 
 ## API
 Range slider is bundled as a single component, that accepts data and callbacks only as `props`.
-
-## Demo
-You can check a small demo in `demo` folder. 
-
 
 ### Props
 Prop   	 			 |  Type      |  Required  |  Description
