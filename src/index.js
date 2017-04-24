@@ -4,7 +4,7 @@ import Slider from "./Slider";
 
 ReactDOM.render(
     <Slider
-        range={[50, 100, 200, 400, 800]}
+        range={[0, 50, 200, 400, 800]}
         onChange={(value) => {
         }}/>,
   document.getElementById('root')

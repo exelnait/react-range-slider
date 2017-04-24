@@ -9652,6 +9652,11 @@ var App = function (_PureComponent) {
             }) > 0) {
                 throw new Error("All values in 'range' prop need to be numbers");
             }
+            if (this.props.range.filter(function (value, index, array) {
+                return Math.max.apply(Math, array.slice(0, index)) > value;
+            }).length !== 0) {
+                throw new Error("All values in 'range' prop need to be ascending");
+            }
         }
     }, {
         key: "componentDidMount",
@@ -9770,7 +9775,7 @@ var _Slider2 = _interopRequireDefault(_Slider);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _reactDom2.default.render(_react2.default.createElement(_Slider2.default, {
-    range: [50, 100, 200, 400, 800],
+    range: [0, 50, 200, 400, 800],
     onChange: function onChange(value) {} }), document.getElementById('root'));
 
 /***/ }),

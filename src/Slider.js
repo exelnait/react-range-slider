@@ -23,6 +23,9 @@ class App extends PureComponent {
         if (this.props.range.filter(value => typeof value !== 'number') > 0) {
             throw new Error("All values in 'range' prop need to be numbers")
         }
+        if (this.props.range.filter((value, index, array) => Math.max.apply(Math, array.slice(0,index)) > value).length !== 0) {
+            throw new Error("All values in 'range' prop need to be ascending")
+        }
     };
 
     componentDidMount() {
