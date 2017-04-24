@@ -1,5 +1,5 @@
 import React, { PureComponent} from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 class App extends PureComponent {
 
@@ -19,33 +19,34 @@ class App extends PureComponent {
                 fill: 0,
                 handle: -3
             }
-        }
-    };
+        };
+    }
 
     componentWillMount() {
         if (!this.props.range) {
-            throw new Error("'range' prop required")
+            throw new Error("'range' prop required");
         }
         if (this.props.range.length < 2) {
-            throw new Error("You need to add 2 or more numbers in 'range' prop")
+            throw new Error("You need to add 2 or more numbers in 'range' prop");
         }
         if (!PropTypes.arrayOf(PropTypes.numbers)) {
-            throw new Error("All values in 'range' prop need to be numbers")
+            throw new Error("All values in 'range' prop need to be numbers");
         }
         this.props.range.reduce((acc, value) => {
-            if (value < acc)
-                throw new Error("All values in 'range' prop need to be ascending")
-            return value
+            if (value < acc) {
+                throw new Error("All values in 'range' prop need to be ascending");
+            }
+            return value;
         });
     };
 
     componentDidMount() {
-        window.addEventListener('resize', this.handleUpdate);
-        this.handleUpdate()
+        window.addEventListener("resize", this.handleUpdate);
+        this.handleUpdate();
     };
 
     componentWillUnmount() {
-        window.removeEventListener('resize', this.handleUpdate);
+        window.removeEventListener("resize", this.handleUpdate);
     };
 
     handleUpdate = () => {
@@ -55,18 +56,17 @@ class App extends PureComponent {
         this.setState({
             limit: sliderPos - handlePos,
             grab: handlePos
-        })
+        });
     };
 
     handleStart = () => {
-        document.addEventListener('mousemove', this.handleDrag);
-        document.addEventListener('mouseup', this.handleEnd);
+        document.addEventListener("mousemove", this.handleDrag);
+        document.addEventListener("mouseup", this.handleEnd);
     };
 
     handleDrag = (e) => {
         e.stopPropagation();
         e.preventDefault();
-
 
         let position = this.position(e);
         let value = this.getValueFromPosition(position);
@@ -75,12 +75,13 @@ class App extends PureComponent {
             value,
             coordinates
         });
-        this.props.onChange && this.props.onChange(value, e)
+
+        this.props.onChange && this.props.onChange(value, e);
     };
 
     handleEnd = (e) => {
-        document.removeEventListener('mousemove', this.handleDrag);
-        document.removeEventListener('mouseup', this.handleEnd);
+        document.removeEventListener("mousemove", this.handleDrag);
+        document.removeEventListener("mouseup", this.handleEnd);
     };
 
     position = (e) => {
@@ -94,12 +95,14 @@ class App extends PureComponent {
 
     coordinates = (pos) => {
         const {grab, limit} = this.state;
+
         if (pos >= limit) pos = limit;
         if (pos <= 0) pos = 0;
+
         return {
             fill: pos + grab,
             handle: pos - 5
-        }
+        };
     };
 
     getValueFromPosition = (pos) => {
@@ -139,32 +142,32 @@ class App extends PureComponent {
                     {this.props.range[0]}
                 </div>
                 <div ref={(s) => {
-                    this.slider = s
+                    this.slider = s;
                 }}
                      className="react-range-slider__wrapper">
                     <div ref={(sh) => {
-                        this.handle = sh
+                        this.handle = sh;
                     }}
-                         className='react-range-slider__handle'
+                         className="react-range-slider__handle"
                          onMouseDown={this.handleStart}
                          onTouchMove={this.handleDrag}
                          onTouchEnd={this.handleEnd}
                          style={handleStyle}>
-                        <div className='react-range-slider__tooltip'>
+                        <div className="react-range-slider__tooltip">
                             {this.state.value}
                         </div>
                     </div>
-                    <div className='react-range-slider__fill'
-                         style={fillStyle}/>
+                    <div className="react-range-slider__fill"
+                         style={fillStyle} />
                     {
                         this.props.range.map((value, index, array) => {
                             return index !== 0 ? (
-                                <div key={'section-' + value}
-                                     style={{width: 100 / (array.length - 1) + '%'}}
+                                <div key={"section-" + value}
+                                     style={{width: 100 / (array.length - 1) + "%"}}
                                      className="react-range-slider__section">
                                     {
-                                        index !== array.length - 1 ?
-                                            <span className="react-range-slider__section-value">{value}</span> : null
+                                        index !== array.length - 1
+                                            ? <span className="react-range-slider__section-value">{value}</span> : null
                                     }
                                     <span className="react-range-slider__section-text">Section {index}</span>
                                 </div>

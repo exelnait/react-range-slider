@@ -1,0 +1,24 @@
+{
+    "parser": "babel-eslint",
+    "extends": ["standard", "standard-jsx"],
+    "env": {
+        "es6": true,
+        "browser": true,
+        "jest": true
+    },
+    "rules": {
+        "indent": ["error", 4],
+        "linebreak-style": ["error", "unix"],
+        "quotes": ["error", "double"],
+        "semi": ["error", "always"],
+        "padded-blocks": ["error", "never"],
+        "eol-last": ["error", "never"],
+        "space-before-function-paren": ["error", "never"],
+        "react/jsx-indent": [0, 0],
+        "react/jsx-indent-props": [0, 0],
+        "jsx-quotes": ["error", "prefer-double"]
+    },
+    "plugins": [
+        "react"
+    ]
+}
