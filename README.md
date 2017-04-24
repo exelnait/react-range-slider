@@ -41,8 +41,8 @@ Rangeslider is bundled as a single component, that accepts data and callbacks on
 
 ### Props
 Prop   	 			 |  Type      |  Required  |  Description
----------   	     |  -------   |  -------   | ---------  |  -----------
-`range`              |  array     | true       |  array with ascending numbers. `[50, 100, 200, 400, 800]`
+---------   	     |  -------   |  -------   |  -----------
+`range`              |  array     |  true      |  array with ascending numbers. `[50, 100, 200, 400, 800]`
 `onChange`  	     |  function  |            |  function gets called whenever the slider handle is being dragged or clicked
 
 ## Development
