@@ -10036,24 +10036,24 @@ var App = function (_PureComponent) {
             var sliderPos = _this.slider.offsetWidth;
             var handlePos = _this.handle.offsetWidth / 2;
 
-            var new_coordinates = null;
+            var newCoordinates = null;
             if (_this.windowWidth !== window.innerWidth) {
                 var windowWidthDiffPercentage = window.innerWidth / _this.windowWidth * 100;
-                new_coordinates = {
+                newCoordinates = {
                     fill: _this.state.coordinates.fill / 100 * windowWidthDiffPercentage,
                     handle: _this.state.coordinates.handle / 100 * windowWidthDiffPercentage
                 };
                 _this.windowWidth = window.innerWidth;
             }
 
-            var new_state = {
+            var newState = {
                 limit: sliderPos - handlePos,
                 grab: handlePos
             };
-            if (new_coordinates) {
-                new_state.coordinates = new_coordinates;
+            if (newCoordinates) {
+                newState.coordinates = newCoordinates;
             }
-            _this.setState(new_state);
+            _this.setState(newState);
         };
 
         _this.handleStart = function () {
@@ -10068,12 +10068,15 @@ var App = function (_PureComponent) {
             var position = _this.position(e);
             var value = _this.getValueFromPosition(position);
             var coordinates = _this.coordinates(position);
+
+            if (_this.props.onChange && _this.state.value !== value) {
+                _this.props.onChange(value, e);
+            }
+
             _this.setState({
                 value: value,
                 coordinates: coordinates
             });
-
-            _this.props.onChange && _this.props.onChange(value, e);
         };
 
         _this.handleEnd = function (e) {

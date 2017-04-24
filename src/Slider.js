@@ -54,24 +54,24 @@ class App extends PureComponent {
         let sliderPos = this.slider.offsetWidth;
         let handlePos = this.handle.offsetWidth / 2;
 
-        let new_coordinates = null;
+        let newCoordinates = null;
         if (this.windowWidth !== window.innerWidth) {
             let windowWidthDiffPercentage = window.innerWidth / this.windowWidth * 100;
-            new_coordinates = {
-                fill: this.state.coordinates.fill/100 * windowWidthDiffPercentage,
-                handle: this.state.coordinates.handle/100 * windowWidthDiffPercentage
+            newCoordinates = {
+                fill: this.state.coordinates.fill / 100 * windowWidthDiffPercentage,
+                handle: this.state.coordinates.handle / 100 * windowWidthDiffPercentage
             };
             this.windowWidth = window.innerWidth;
         }
 
-        let new_state = {
+        let newState = {
             limit: sliderPos - handlePos,
             grab: handlePos
         };
-        if (new_coordinates) {
-            new_state.coordinates = new_coordinates;
+        if (newCoordinates) {
+            newState.coordinates = newCoordinates;
         }
-        this.setState(new_state);
+        this.setState(newState);
     };
 
     handleStart = () => {
@@ -86,12 +86,15 @@ class App extends PureComponent {
         let position = this.position(e);
         let value = this.getValueFromPosition(position);
         const coordinates = this.coordinates(position);
+
+        if (this.props.onChange && this.state.value !== value) {
+            this.props.onChange(value, e);
+        }
+
         this.setState({
             value,
             coordinates
         });
-
-        this.props.onChange && this.props.onChange(value, e);
     };
 
     handleEnd = (e) => {
