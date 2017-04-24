@@ -40,10 +40,10 @@ Rangeslider is bundled as a single component, that accepts data and callbacks on
 
 
 ### Props
-Prop   	 			 |  Type      |  Default      |  Description
----------   	     |  -------   |  -------      |  -----------
-`range`              |  array     |  {}           |  array with ascending numbers. `[50, 100, 200, 400, 800]`
-`onChange`  	     |  function  |               |  function gets called whenever the slider handle is being dragged or clicked
+Prop   	 			 |  Type      |  Default   | Required   |  Description
+---------   	     |  -------   |  -------   |            |  -----------
+`range`              |  array     |            | true       |  array with ascending numbers. `[50, 100, 200, 400, 800]`
+`onChange`  	     |  function  |            |            |  function gets called whenever the slider handle is being dragged or clicked
 
 ## Development
 To work on the project locally, you need to pull its dependencies and run `npm start`.
@@ -60,7 +60,7 @@ To check linting you need to run `npm run lint`.
 Feel free to contribute. Submit a Pull Request or open an issue for further discussion.
 
 ## License
-Licensed under MIT License. Copyright © 2015 whoisandie
+Licensed under MIT License. Copyright © 2017 Timofey Lavrenyuk
 
 See [LICENSE](./LICENSE) for more information.
 
