@@ -10,7 +10,7 @@
 import React, { PureComponent } from 'react'
 import Slider from 'react-range-slider'
 
-class PriceCountSlider extends Component {
+class PriceCountSlider extends PureComponent {
   constructor(props, context) {
     super(props, context)
     this.state = {
