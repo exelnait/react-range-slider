@@ -10043,8 +10043,8 @@ var App = function (_PureComponent) {
         };
 
         _this.handleStart = function () {
-            document.addEventListener('mousemove', _this.handleDrag);
-            document.addEventListener('mouseup', _this.handleEnd);
+            document.addEventListener("mousemove", _this.handleDrag);
+            document.addEventListener("mouseup", _this.handleEnd);
         };
 
         _this.handleDrag = function (e) {
@@ -10058,12 +10058,13 @@ var App = function (_PureComponent) {
                 value: value,
                 coordinates: coordinates
             });
+
             _this.props.onChange && _this.props.onChange(value, e);
         };
 
         _this.handleEnd = function (e) {
-            document.removeEventListener('mousemove', _this.handleDrag);
-            document.removeEventListener('mouseup', _this.handleEnd);
+            document.removeEventListener("mousemove", _this.handleDrag);
+            document.removeEventListener("mouseup", _this.handleEnd);
         };
 
         _this.position = function (e) {
@@ -10081,8 +10082,10 @@ var App = function (_PureComponent) {
                 grab = _this$state.grab,
                 limit = _this$state.limit;
 
+
             if (pos >= limit) pos = limit;
             if (pos <= 0) pos = 0;
+
             return {
                 fill: pos + grab,
                 handle: pos - 5
@@ -10142,20 +10145,22 @@ var App = function (_PureComponent) {
                 throw new Error("All values in 'range' prop need to be numbers");
             }
             this.props.range.reduce(function (acc, value) {
-                if (value < acc) throw new Error("All values in 'range' prop need to be ascending");
+                if (value < acc) {
+                    throw new Error("All values in 'range' prop need to be ascending");
+                }
                 return value;
             });
         }
     }, {
         key: "componentDidMount",
         value: function componentDidMount() {
-            window.addEventListener('resize', this.handleUpdate);
+            window.addEventListener("resize", this.handleUpdate);
             this.handleUpdate();
         }
     }, {
         key: "componentWillUnmount",
         value: function componentWillUnmount() {
-            window.removeEventListener('resize', this.handleUpdate);
+            window.removeEventListener("resize", this.handleUpdate);
         }
     }, {
         key: "render",
@@ -10178,6 +10183,10 @@ var App = function (_PureComponent) {
                     { ref: function ref(s) {
                             _this2.slider = s;
                         },
+                        onMouseDown: this.handleDrag,
+                        onMouseUp: this.handleEnd,
+                        onTouchStart: this.handleDrag,
+                        onTouchEnd: this.handleEnd,
                         className: "react-range-slider__wrapper" },
                     _react2.default.createElement(
                         "div",
@@ -10200,8 +10209,8 @@ var App = function (_PureComponent) {
                     this.props.range.map(function (value, index, array) {
                         return index !== 0 ? _react2.default.createElement(
                             "div",
-                            { key: 'section-' + value,
-                                style: { width: 100 / (array.length - 1) + '%' },
+                            { key: "section-" + value,
+                                style: { width: 100 / (array.length - 1) + "%" },
                                 className: "react-range-slider__section" },
                             index !== array.length - 1 ? _react2.default.createElement(
                                 "span",

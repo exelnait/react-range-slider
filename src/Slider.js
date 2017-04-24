@@ -139,15 +139,15 @@ class App extends PureComponent {
         return (
             <div className="react-range-slider">
                 <div className="react-range-slider__section-title">
-                    {this.props.range[0]}
+                    { this.props.range[0] }
                 </div>
-                <div ref={(s) => {
-                    this.slider = s;
-                }}
+                <div ref={(s) => { this.slider = s; }}
+                     onMouseDown={this.handleDrag}
+                     onMouseUp={this.handleEnd}
+                     onTouchStart={this.handleDrag}
+                     onTouchEnd={this.handleEnd}
                      className="react-range-slider__wrapper">
-                    <div ref={(sh) => {
-                        this.handle = sh;
-                    }}
+                    <div ref={(sh) => { this.handle = sh; }}
                          className="react-range-slider__handle"
                          onMouseDown={this.handleStart}
                          onTouchMove={this.handleDrag}
@@ -176,7 +176,7 @@ class App extends PureComponent {
                     }
                 </div>
                 <div className="react-range-slider__section-title">
-                    {this.props.range[this.props.range.length - 1]}
+                    { this.props.range[this.props.range.length - 1] }
                 </div>
             </div>
         );
