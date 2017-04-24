@@ -10036,10 +10036,24 @@ var App = function (_PureComponent) {
             var sliderPos = _this.slider.offsetWidth;
             var handlePos = _this.handle.offsetWidth / 2;
 
-            _this.setState({
+            var new_coordinates = null;
+            if (_this.windowWidth !== window.innerWidth) {
+                var windowWidthDiffPercentage = window.innerWidth / _this.windowWidth * 100;
+                new_coordinates = {
+                    fill: _this.state.coordinates.fill / 100 * windowWidthDiffPercentage,
+                    handle: _this.state.coordinates.handle / 100 * windowWidthDiffPercentage
+                };
+                _this.windowWidth = window.innerWidth;
+            }
+
+            var new_state = {
                 limit: sliderPos - handlePos,
                 grab: handlePos
-            });
+            };
+            if (new_coordinates) {
+                new_state.coordinates = new_coordinates;
+            }
+            _this.setState(new_coordinates);
         };
 
         _this.handleStart = function () {
@@ -10129,6 +10143,7 @@ var App = function (_PureComponent) {
                 handle: -3
             }
         };
+        _this.windowWidth = window.innerWidth;
         return _this;
     }
 

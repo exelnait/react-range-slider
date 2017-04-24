@@ -20,6 +20,7 @@ class App extends PureComponent {
                 handle: -3
             }
         };
+        this.windowWidth = window.innerWidth;
     }
 
     componentWillMount() {
@@ -50,13 +51,27 @@ class App extends PureComponent {
     };
 
     handleUpdate = () => {
-        const sliderPos = this.slider.offsetWidth;
-        const handlePos = this.handle.offsetWidth / 2;
+        let sliderPos = this.slider.offsetWidth;
+        let handlePos = this.handle.offsetWidth / 2;
 
-        this.setState({
+        let new_coordinates = null;
+        if (this.windowWidth !== window.innerWidth) {
+            let windowWidthDiffPercentage = window.innerWidth / this.windowWidth * 100;
+            new_coordinates = {
+                fill: this.state.coordinates.fill/100 * windowWidthDiffPercentage,
+                handle: this.state.coordinates.handle/100 * windowWidthDiffPercentage
+            };
+            this.windowWidth = window.innerWidth;
+        }
+
+        let new_state = {
             limit: sliderPos - handlePos,
             grab: handlePos
-        });
+        };
+        if (new_coordinates) {
+            new_state.coordinates = new_coordinates;
+        }
+        this.setState(new_coordinates);
     };
 
     handleStart = () => {
